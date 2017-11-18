@@ -2,13 +2,12 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-SECRET_KEY = 't(dsnkq^18rf3oczm$e%1xxl3q*y%2ydjqiwyp-=x$l&f!%fa0'
-
+SECRET_KEY = '288x*zmb)=o)xx2w9q3^^^5*ow9b07s!1dzz5sgq*22+3y3t5q'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'colyk.pythonanywhere.com']
-LOGIN_REDIRECT_URL = '/'
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -17,7 +16,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'blog',
+    'disqus',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +85,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+DISQUS_API_KEY = 'pLoyOhB8okP0HwSweXdL3bLZp8pTtlDov7J9Khwtz6lmE7cGoksGYurmt97A6305'
+DISQUS_WEBSITE_SHORTNAME = 'colyk'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+SITE_ID = 1
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/static/media')
 MEDIA_URL = '/static/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)

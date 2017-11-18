@@ -1,24 +1,29 @@
-{% extends 'blog/base.html' %} {% block content %}
+{% extends 'blog/base.html' %}{% load staticfiles %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+{% if post.descriptions %}
+{% block descriptions %}
+    {{ post.descriptions|default_if_none:'Welcome!' }}
+{% endblock %}
+ {% endif %}
+
+{% block content %}
 <div class="post">
-    {% if post.published_date %}
-    <div class="date">
-        <p>Опубликовано: {{ post.published_date }}</p>
-    </div>
+
+    <h1>{{ post.title }}</h1>
+    {% if post.image %}
+    <img src="{{ post.image.url }}">
     {% endif %}
-    <h1>{{ post.title }}</h1> {% if post.image %}
-    <img src="{{ MEDIA_URL }}{{ post.image.url }}"> {% endif %}
     <p>{{ post.text }}</p>
 </div>
-<hr><br>
-<a class="btn btn-primary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-{% for comment in post.comments.all %}
-    <div class="comment">
-        <div class="date">{{ comment.created_date }}</div>
-        <strong>{{ comment.author }}</strong>
-        <p>{{ comment.text|linebreaks }}</p>
-        <hr><br>
+<p>
+    {% if post.published_date %}
+    <div class="date">
+        <p>  Опубликовано: {{ post.published_date }}</p>
     </div>
-{% empty %}
-    <p>No comments here yet :(</p>
-{% endfor %}
+    {% endif %}
+    {% load disqus_tags %} {% disqus_dev %} {% disqus_show_comments %}
+</p>
 {% endblock %}

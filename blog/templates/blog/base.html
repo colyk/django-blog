@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,  initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="My django blog">
     <meta name="author" content="colyk">
@@ -35,34 +36,42 @@
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
+              <a class="nav-link" href="/about/">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/post/1/">Sample Post</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a class="nav-link" href="/contact/">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url({% static 'media/images/home-bg.jpg' %})">
+    <header class="masthead"{% block styles %}
+style="background-image: url({% static 'media/home-bg.jpg' %})"
+{% endblock %} >
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Colyk's Blog</h1>
-              <span class="subheading">Welcome!</span>
+              <h1>
+                  {% block title %}
+                  Colyk's Blog
+                  {% endblock %}
+              </h1>
+              <span class="subheading">
+                  {% block descriptions %}
+                  Welcome!
+                  {% endblock %}
+              </span>
             </div>
           </div>
         </div>
       </div>
     </header>
-
-
 
     <div class="content container">
         <div class="row">
@@ -74,17 +83,44 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-
-                    <p class="copyright text-muted">Copyright &copy; colyk's blog 2017</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="https://vk.com/me_gusta_nikoly">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-vk fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com/profile.php?id=100013420426413">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/colyk">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; Your Website 2017</p>
+          </div>
         </div>
+      </div>
     </footer>
-    <!-- Bootstrap core JavaScript -->
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Custom scripts for this template -->
     <script src="{% static 'js/clean-blog.min.js' %}"></script>

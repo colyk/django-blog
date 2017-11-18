@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+    style="background-image: url({% static 'media/about-bg.jpg' %})"
+{% endblock %}
+
+{% block title %}
+    About Me
+{% endblock %}
+
+{% block descriptions %}
+    This is what I do.
+{% endblock %}
+
+{% block content %}
+    <p>main</p>
+{% endblock %}
