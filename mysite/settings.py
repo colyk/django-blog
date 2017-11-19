@@ -86,7 +86,7 @@ USE_L10N = True
 USE_TZ = True
 
 DISQUS_API_KEY = 'pLoyOhB8okP0HwSweXdL3bLZp8pTtlDov7J9Khwtz6lmE7cGoksGYurmt97A6305'
-DISQUS_WEBSITE_SHORTNAME = 'colyk'
+DISQUS_WEBSITE_SHORTNAME = 'colyk-pythonanywhere-com'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
