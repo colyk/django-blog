@@ -24,6 +24,10 @@
         <p>  Опубликовано: {{ post.published_date }}</p>
     </div>
     {% endif %}
-    {% load disqus_tags %} {% disqus_dev %} {% disqus_show_comments %}
+    {% load disqus_tags %}
+{% set_disqus_identifier "page_" page.pk %}
+{% set_disqus_title page.title %}
+{% disqus_show_comments %}
+{% disqus_dev %}
 </p>
 {% endblock %}
