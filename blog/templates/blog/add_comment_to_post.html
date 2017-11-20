@@ -1,38 +1,52 @@
 {% extends 'blog/base.html' %}
 {% block descriptions %}
     <p>Left you comment!)</p>
-{% endblock %}
-{% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <h3>New comment: </h3>
+    {% endblock %}
 
-      <form name="sentMessage" id="contactForm">
-        <div class="control-group">
-          <div class="form-group floating-label-form-group controls">
-            <label>Name: </label>
-            <input type="text" class="form-control" placeholder="Name" id="name" value="{{ form.name }}" required data-validation-required-message="Please enter your name.">
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
 
-        <div class="control-group">
-          <div class="form-group floating-label-form-group controls">
-            <label>Message: </label>
-            <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message.">{{ form.message }}</textarea>
-            <p class="help-block text-danger"></p>
-          </div>
+    {% block content %}
+    {% load widget_tweaks %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+      {% endfor %}
+
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {% for error in form.non_field_errors %}
+            {{ error }}
+          {% endfor %}
         </div>
-        <br>
-        <div id="success"></div>
+      {% endif %}
+
+      {% for field in form.visible_fields %}
         <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block" id="sendMessageButton">Send</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<br>
+          {{ field.label_tag }}
 
-{% endblock %}
+          {% if form.is_bound %}
+            {% if field.errors %}
+              {% render_field field class="form-control is-invalid" %}
+              {% for error in field.errors %}
+                <div class="invalid-feedback">
+                  {{ error }}
+                </div>
+              {% endfor %}
+            {% else %}
+              {% render_field field class="form-control is-valid" %}
+            {% endif %}
+          {% else %}
+            {% render_field field class="form-control" %}
+          {% endif %}
+
+          {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock %}

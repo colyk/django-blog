@@ -17,7 +17,7 @@
     {% if post.image %}
     <img src="{{ post.image.url }}">
     {% endif %}
-    <p>{{ post.text }}</p>
+    <p>{{ post.text| safe }}</p>
 </div>
 <p>
     {% if post.published_date %}
@@ -63,6 +63,7 @@
       top: 15px;
       }
     </style>
+    <br>
     {% for comment in post.comments.all %}
     {% if comment.approved_comment %}
         <div class="col-lg-12 col-md-10 mx-auto" id="comment">

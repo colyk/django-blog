@@ -2,7 +2,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = '288x*zmb)=o)xx2w9q3^^^5*ow9b07s!1dzz5sgq*22+3y3t5q'
+SECRET_KEY = '_-q*vskkw1e(a3tq5+=(8csr%vm#7-v61hky=$teyjpxz##eos'
+
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'colyk.pythonanywhere.com']
@@ -16,8 +17,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'blog',
+    'ckeditor',
+    'ckeditor_uploader',
+    'widget_tweaks',
 
 ]
 
@@ -51,6 +54,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -58,6 +65,9 @@ DATABASES = {
     }
 }
 
+
+# Password validation
+# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -74,7 +84,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Poland'
@@ -85,12 +94,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATIC_URL = '/static/'
-SITE_ID = 1
+
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/static/media')
 MEDIA_URL = '/static/media/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar':[['Source', 'Link', 'Unlink', 'SpecialChar', 'Image', 'CodeSnippet']],
+        'height': 400,
+        'width': 900,
+        'removePlugins': 'stylesheetparser',
+        'extraPlugins': 'codesnippet',
+    },
+}
