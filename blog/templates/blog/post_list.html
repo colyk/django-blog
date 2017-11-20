@@ -1,15 +1,17 @@
 {% extends 'blog/base.html' %}
-{% block content %} 
+{% block content %}
 {% for post in posts %}
+<br>
 <div class="post">
     <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
     {% if post.descriptions %}
-        <p>{{ post.descriptions }}</p>
+        <p>{{ post.descriptions|linebreaksbr }}</p>
     {% endif %}
     <div class="date">
-        <p><small>Опубликовано: {{ post.published_date }}</small></p>
+        <p>Опубликовано: {{ post.published_date }}</p>
     </div>
+    <small><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a></small>
 </div>
-<hr>
+<hr class="style">
 {% endfor %}
 {% endblock %}

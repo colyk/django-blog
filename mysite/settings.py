@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'blog',
-    'disqus',
+
 ]
 
 MIDDLEWARE = [
@@ -85,8 +85,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-DISQUS_API_KEY = 'nk0uNKShGzW1X08FdNAFRLS2JHiaskyBAhrm2MfH56eyFWWu84zD1bmRVLFq6w9n'
-DISQUS_WEBSITE_SHORTNAME = 'colyk-pythonanywhere-com'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
